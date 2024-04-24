@@ -31,6 +31,7 @@ for (let y of maze) {
     switch (x) {
       case 1:
         block.classList.add("wall");
+        block.classList.add("solid");
         break;
       case 2:
         block.id = "player";
@@ -40,6 +41,7 @@ for (let y of maze) {
         break;
       case 3:
         block.classList.add("enemy");
+        block.classList.add("solid");
         break;
       default:
         block.classList.add("point");
@@ -80,27 +82,62 @@ const player = document.querySelector("#player");
 const playerMouth = player.querySelector(".mouth");
 let playerTop = 0;
 let playerLeft = 0;
-let newPosition = player.getBoundingClientRect();
+
+let currentPosition = player.getBoundingClientRect();
+// getting the new positions for point collision detection
+let newBottom = currentPosition.bottom + 1;
+let newTop = currentPosition.top - 1;
+let newLeft = currentPosition.left - 1;
+let newRight = currentPosition.right + 1;
 
 setInterval(function () {
   if (startBtnActive == false) {
     // added to ensure player cant move until this is true
     if (downPressed) {
-      playerTop++;
-      player.style.top = playerTop + "px";
-      playerMouth.classList = "down";
+      let btmL = document.elementFromPoint(currentPosition.left, newBottom);
+      let btmR = document.elementFromPoint(currentPosition.right, newBottom);
+
+      if (
+        btmL.classList.contains("solid") == false &&
+        btmR.classList.contains("solid") == false
+      ) {
+        playerTop++;
+        player.style.top = playerTop + "px";
+        playerMouth.classList = "down";
+      }
     } else if (upPressed) {
-      playerTop--;
-      player.style.top = playerTop + "px";
-      playerMouth.classList = "up";
+      let topL = document.elementFromPoint(currentPosition.left, newTop);
+      let topR = document.elementFromPoint(currentPosition.right, newTop);
+      if (
+        topL.classList.contains("solid") == false &&
+        topR.classList.contains("solid") == false
+      ) {
+        playerTop--;
+        player.style.top = playerTop + "px";
+        playerMouth.classList = "up";
+      }
     } else if (leftPressed) {
-      playerLeft--;
-      player.style.left = playerLeft + "px";
-      playerMouth.classList = "left";
+      let topL = document.elementFromPoint(newLeft, currentPosition.top);
+      let btmL = document.elementFromPoint(newLeft, currentPosition.bottom);
+      if (
+        topL.classList.contains("solid") == false &&
+        btmL.classList.contains("solid") == false
+      ) {
+        playerLeft--;
+        player.style.left = playerLeft + "px";
+        playerMouth.classList = "left";
+      }
     } else if (rightPressed) {
-      playerLeft++;
-      player.style.left = playerLeft + "px";
-      playerMouth.classList = "right";
+      let topR = document.elementFromPoint(newRight, currentPosition.top);
+      let btmR = document.elementFromPoint(newRight, currentPosition.bottom);
+      if (
+        topR.classList.contains("solid") == false &&
+        btmR.classList.contains("solid") == false
+      ) {
+        playerLeft++;
+        player.style.left = playerLeft + "px";
+        playerMouth.classList = "right";
+      }
     }
   }
 }, 10);
