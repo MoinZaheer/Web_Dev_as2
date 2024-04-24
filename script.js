@@ -83,14 +83,13 @@ const playerMouth = player.querySelector(".mouth");
 let playerTop = 0;
 let playerLeft = 0;
 
-let currentPosition = player.getBoundingClientRect();
-// getting the new positions for point collision detection
-let newBottom = currentPosition.bottom + 1;
-let newTop = currentPosition.top - 1;
-let newLeft = currentPosition.left - 1;
-let newRight = currentPosition.right + 1;
-
 setInterval(function () {
+  let currentPosition = player.getBoundingClientRect();
+  // getting the new positions for point collision detection
+  let newBottom = currentPosition.bottom + 1;
+  let newTop = currentPosition.top - 1;
+  let newLeft = currentPosition.left - 1;
+  let newRight = currentPosition.right + 1;
   if (startBtnActive == false) {
     // added to ensure player cant move until this is true
     if (downPressed) {
