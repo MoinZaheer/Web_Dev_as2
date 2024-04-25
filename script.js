@@ -168,7 +168,13 @@ function Pointcheck() {
       position.bottom > pos.top &&
       position.top < pos.bottom
     ) {
-      point.style.opacity = 0;
+      // point.style.opacity = 0;
+      // point.style.pointerEvents = "none";
+      point.classList.remove("point");
+      let score = document.querySelector(".score p");
+      // console.log(score.firstChild.nodeValue);
+      // console.log(parseInt(score.firstChild.nodeValue) + 1);
+      score.firstChild.nodeValue = parseInt(score.firstChild.nodeValue) + 1;
     }
   }
 }

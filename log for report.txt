@@ -3,5 +3,23 @@ elements, I encountered a problem where when I set
 the property of the point from display none, the area of 
 that point suddenly got replaced by a wall for some reason
 
-To solve that problem I tried to use opacity property insetead of
-display: none, which solved the problem for now
+To solve that problem I tried to use opacity = 0 property insetead of
+display: none, which solved the problem for now, but I knew it was
+going to cause problems in the future, and it wasnt long until it caused
+a problem
+
+score.firstChild.nodeValue = parseInt(score.firstChild.nodeValue) + 1;
+this caused an interesting problem, when the player stayed on a point
+the scored increased infinitely, this problem was caused by none other than
+the opacity = 0, so Instead I found a better solution of 
+point.classList.remove("point"). and this solved both the problems
+
+Interesting: Changing the Set Interval time property changes
+the movement speed of the player, could potentialy use that
+
+
+// console.log(score.firstChild.nodeValue);
+// console.log(parseInt(score.firstChild.nodeValue) + 1);
+
+used this to check if score was incrementing after using parseInt
+
