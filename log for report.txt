@@ -1,0 +1,7 @@
+when trying to implement the point collision using the area of 
+elements, I encountered a problem where when I set
+the property of the point from display none, the area of 
+that point suddenly got replaced by a wall for some reason
+
+To solve that problem I tried to use opacity property insetead of
+display: none, which solved the problem for now

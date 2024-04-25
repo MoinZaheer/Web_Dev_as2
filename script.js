@@ -84,6 +84,7 @@ let playerTop = 0;
 let playerLeft = 0;
 
 setInterval(function () {
+  Pointcheck();
   let currentPosition = player.getBoundingClientRect();
   // getting the new positions for point collision detection
   let newBottom = currentPosition.bottom + 1;
@@ -154,3 +155,20 @@ function hideStart() {
   startBtnActive = false;
 }
 startBtn.addEventListener("click", hideStart);
+
+function Pointcheck() {
+  const position = player.getBoundingClientRect();
+  const points = document.querySelectorAll(".point");
+
+  for (let point of points) {
+    let pos = point.getBoundingClientRect();
+    if (
+      position.right > pos.left &&
+      position.left < pos.right &&
+      position.bottom > pos.top &&
+      position.top < pos.bottom
+    ) {
+      point.style.opacity = 0;
+    }
+  }
+}
