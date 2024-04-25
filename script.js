@@ -175,6 +175,9 @@ function Pointcheck() {
       // console.log(score.firstChild.nodeValue);
       // console.log(parseInt(score.firstChild.nodeValue) + 1);
       score.firstChild.nodeValue = parseInt(score.firstChild.nodeValue) + 1;
+      if (score.firstChild.nodeValue == 50) {
+        alert("Game Over!");
+      }
     }
   }
 }
