@@ -175,9 +175,39 @@ function Pointcheck() {
       // console.log(score.firstChild.nodeValue);
       // console.log(parseInt(score.firstChild.nodeValue) + 1);
       score.firstChild.nodeValue = parseInt(score.firstChild.nodeValue) + 1;
-      if (score.firstChild.nodeValue == 50) {
-        alert("Game Over!");
-      }
+      // if (score.firstChild.nodeValue == 50) {
+      //   alert("Game Over!");
+      // }
+      checkGameOver(score);
     }
   }
+}
+
+function checkGameOver(score) {
+  if (score.firstChild.nodeValue == 50) {
+    displayGameOver();
+  } else if (touchedEnemy() == true) {
+    displayGameOver();
+  }
+}
+
+function touchedEnemy() {
+  let enemies = document.querySelectorAll(".enemy");
+  const position = player.getBoundingClientRect();
+  for (let enemy of enemies) {
+    let pos = enemy.getBoundingClientRect();
+    if (
+      position.right > pos.left &&
+      position.left < pos.right &&
+      position.bottom > pos.top &&
+      position.top < pos.bottom
+    ) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function displayGameOver() {
+  console.log("GameOver");
 }

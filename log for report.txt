@@ -23,3 +23,5 @@ the movement speed of the player, could potentialy use that
 
 used this to check if score was incrementing after using parseInt
 
+I tried to use the same method of checking points on toucedEnemy but for some 
+reason it was acting very wierdly
