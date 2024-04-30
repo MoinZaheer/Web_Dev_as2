@@ -219,7 +219,20 @@ function displayGameOver() {
   let textNode = document.createTextNode("Game Over!");
 
   gameOverDiv.appendChild(textNode);
-  // gameOverDiv.style
-  body = document.querySelector("body");
-  body.appendChild(gameOverDiv);
+  gameOverDiv.style.display = "flex";
+  gameOverDiv.style.alignItems = "center";
+  gameOverDiv.style.justifyContent = "center";
+  gameOverDiv.style.position = "fixed";
+  gameOverDiv.style.position = "center center";
+  gameOverDiv.style.backgroundColor = "white";
+  gameOverDiv.style.width = "30vw";
+  gameOverDiv.style.height = "10vw";
+  gameOverDiv.style.backgroundColor = "#ccc";
+  gameOverDiv.style.borderRadius = "20px";
+  gameOverDiv.style.boxShadow = "4px 4px 4px #000";
+  gameOverDiv.style.textShadow = "2px 2px 2px #000";
+  gameOverDiv.style.fontSize = "2em";
+  // gameOverDiv.style.top = "50vh";
+  // gameOverDiv.style.left = "50vw";
+  document.body.appendChild(gameOverDiv);
 }
