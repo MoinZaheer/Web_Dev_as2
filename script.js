@@ -256,3 +256,20 @@ function displayGameOver() {
     document.body.appendChild(gameOverDiv);
   }, 750); // gameOver div displayed with 0.75 second delay
 }
+
+// enemy movement code
+let enemyMovementInterval;
+
+enemyMovementInterval = setInterval(function () {
+  // 1 : Up
+  // 2 : Left
+  // 3 : Down
+  // 4 : Right
+  if (startBtnActive == false && gameOver == false) {
+    // only move enemies if this condition is true
+    let enemies = document.querySelectorAll(".enemy");
+    for (let enemy of enemies) {
+      movement = Math.ceil(Math.random() * 4);
+    }
+  }
+}, 10);
