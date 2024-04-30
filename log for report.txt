@@ -25,6 +25,8 @@ used this to check if score was incrementing after using parseInt
 
 I tried to use the same method of checking points on toucedEnemy but for some 
 reason it was acting very wierdly
+fixed it by calling the touchedEnemy() function directly
+in the interbal instead of layers of functions
 
 can use 
 (`Hello ${text}`) for concatening strings
