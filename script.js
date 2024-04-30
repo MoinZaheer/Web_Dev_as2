@@ -214,6 +214,7 @@ function touchedEnemy() {
 function displayGameOver() {
   console.log("GameOver");
   gameOver = true;
+  player.classList.add("dead");
   clearInterval(gameLoopInterval);
   let gameOverDiv = document.createElement("div");
   let textNode = document.createTextNode("Game Over!");
