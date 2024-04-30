@@ -196,16 +196,18 @@ function touchedEnemy() {
   const position = player.getBoundingClientRect();
   for (let enemy of enemies) {
     let pos = enemy.getBoundingClientRect();
-    if (
-      position.right > pos.left &&
-      position.left < pos.right &&
-      position.bottom > pos.top &&
-      position.top < pos.bottom
-    ) {
-      return true;
-    }
+    console.log("Player: ", position);
+    console.log("Enemy: ", pos);
+    // if (
+    //     position.right > pos.left &&
+    //     position.left < pos.right &&
+    //     position.bottom > pos.top &&
+    //     position.top < pos.bottom
+    //   ) {
+    //     return true;
+    //   }
   }
-  return false;
+  // return false;
 }
 
 function displayGameOver() {
