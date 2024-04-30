@@ -41,7 +41,7 @@ for (let y of maze) {
         break;
       case 3:
         block.classList.add("enemy");
-        block.classList.add("solid");
+        // block.classList.add("solid");
         break;
       default:
         block.classList.add("point");
@@ -84,6 +84,7 @@ let playerTop = 0;
 let playerLeft = 0;
 
 setInterval(function () {
+  touchedEnemy();
   Pointcheck();
   let currentPosition = player.getBoundingClientRect();
   // getting the new positions for point collision detection
@@ -186,8 +187,6 @@ function Pointcheck() {
 function checkGameOver(score) {
   if (score.firstChild.nodeValue == 50) {
     displayGameOver();
-  } else if (touchedEnemy() == true) {
-    displayGameOver();
   }
 }
 
@@ -196,18 +195,16 @@ function touchedEnemy() {
   const position = player.getBoundingClientRect();
   for (let enemy of enemies) {
     let pos = enemy.getBoundingClientRect();
-    console.log("Player: ", position);
-    console.log("Enemy: ", pos);
-    // if (
-    //     position.right > pos.left &&
-    //     position.left < pos.right &&
-    //     position.bottom > pos.top &&
-    //     position.top < pos.bottom
-    //   ) {
-    //     return true;
-    //   }
+    if (
+      position.right > pos.left &&
+      position.left < pos.right &&
+      position.bottom > pos.top &&
+      position.top < pos.bottom
+    ) {
+      console.log("touched enemy");
+      displayGameOver();
+    }
   }
-  // return false;
 }
 
 function displayGameOver() {
