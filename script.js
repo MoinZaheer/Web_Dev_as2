@@ -5,6 +5,8 @@ let rightPressed = false;
 
 // player cannt move until startBtnActive becomes false
 let startBtnActive = true;
+// player can move until gameOver = true;
+let gameOver = false;
 
 const main = document.querySelector("main");
 
@@ -83,7 +85,9 @@ const playerMouth = player.querySelector(".mouth");
 let playerTop = 0;
 let playerLeft = 0;
 
-setInterval(function () {
+let gameLoopInterval; //used to clear interval
+
+gameLoopInterval = setInterval(function () {
   touchedEnemy();
   Pointcheck();
   let currentPosition = player.getBoundingClientRect();
@@ -92,7 +96,7 @@ setInterval(function () {
   let newTop = currentPosition.top - 1;
   let newLeft = currentPosition.left - 1;
   let newRight = currentPosition.right + 1;
-  if (startBtnActive == false) {
+  if (startBtnActive == false && gameOver == false) {
     // added to ensure player cant move until this is true
     if (downPressed) {
       let btmL = document.elementFromPoint(currentPosition.left, newBottom);
@@ -209,4 +213,13 @@ function touchedEnemy() {
 
 function displayGameOver() {
   console.log("GameOver");
+  gameOver = true;
+  clearInterval(gameLoopInterval);
+  let gameOverDiv = document.createElement("div");
+  let textNode = document.createTextNode("Game Over!");
+
+  gameOverDiv.appendChild(textNode);
+  // gameOverDiv.style
+  body = document.querySelector("body");
+  body.appendChild(gameOverDiv);
 }
