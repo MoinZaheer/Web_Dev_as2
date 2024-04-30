@@ -41,7 +41,7 @@ for (let y of maze) {
         break;
       case 3:
         block.classList.add("enemy");
-        block.classList.add("solid");
+        // block.classList.add("solid");
         break;
       default:
         block.classList.add("point");
@@ -196,18 +196,37 @@ function touchedEnemy() {
   const position = player.getBoundingClientRect();
   for (let enemy of enemies) {
     let pos = enemy.getBoundingClientRect();
-    console.log("Player: ", position);
-    console.log("Enemy: ", pos);
-    // if (
-    //     position.right > pos.left &&
-    //     position.left < pos.right &&
-    //     position.bottom > pos.top &&
-    //     position.top < pos.bottom
-    //   ) {
-    //     return true;
-    //   }
+
+    let playerRadius = position.width / 2;
+    let enemyRadius = pos.width / 2;
+
+    let playerX = position.left + playerRadius;
+    let playerY = position.top + playerRadius;
+
+    let enemyX = pos.left + enemyRadius;
+    let enemyY = pos.top + enemyRadius;
+
+    let distanceX = playerX - enemyX;
+    let distanceY = playerY - enemyY;
+
+    const radii = playerRadius + enemyRadius;
+
+    let distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+
+    console.log("Player Radius ", playerRadius);
+    console.log("Enemy Radius ", enemyRadius);
+    console.log("Distance ", distance);
+    console.log("PlayerX", playerX);
+    console.log("PlayerY", playerY);
+    console.log("EnemyX", enemyX);
+    console.log("EnemyY", enemyY);
+
+    if (distance <= radii) {
+      console.log("Touched Enemy");
+      return true;
+    }
   }
-  // return false;
+  return false;
 }
 
 function displayGameOver() {
