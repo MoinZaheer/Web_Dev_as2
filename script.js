@@ -13,16 +13,33 @@ const main = document.querySelector("main");
 //Player = 2, Wall = 1, Enemy = 3, Point = 0
 let maze = [
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 2, 0, 1, 0, 0, 0, 0, 3, 1],
+  [1, 2, 0, 1, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 1, 1, 1],
   [1, 0, 0, 0, 0, 0, 0, 0, 0, 1],
   [1, 0, 1, 1, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 1, 1, 1],
-  [1, 0, 0, 1, 0, 3, 0, 0, 0, 1],
+  [1, 0, 0, 1, 0, 0, 0, 0, 0, 1],
   [1, 0, 0, 0, 0, 0, 0, 1, 0, 1],
-  [1, 3, 1, 0, 0, 0, 0, 0, 0, 1],
+  [1, 0, 1, 0, 0, 0, 0, 0, 0, 1],
   [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
 ];
+
+// random enemy positions
+// 3 enemies for now, replace 3 points by 3 enemies
+
+for (let i = 0; i < 3; i++) {
+  let row = 0;
+  let col = 0;
+  while (true) {
+    row = Math.floor(Math.random() * maze.length);
+    col = Math.floor(Math.random() * maze[row].length);
+    if (maze[row][col] == 0) {
+      // spawning enemies in place of points
+      maze[row][col] = 3;
+      break; // break statement ends the while loop once a correct place is found
+    }
+  }
+}
 
 //Populates the maze in the HTML
 for (let y of maze) {
@@ -216,24 +233,43 @@ function displayGameOver() {
   gameOver = true;
   player.classList.add("dead");
   clearInterval(gameLoopInterval);
-  let gameOverDiv = document.createElement("div");
-  let textNode = document.createTextNode("Game Over!");
+  // gameOver div displayed after a delay
+  // so that the death animation is clearly visible
+  setTimeout(function () {
+    let gameOverDiv = document.createElement("div");
+    let textNode = document.createTextNode("Game Over!");
 
-  gameOverDiv.appendChild(textNode);
-  gameOverDiv.style.display = "flex";
-  gameOverDiv.style.alignItems = "center";
-  gameOverDiv.style.justifyContent = "center";
-  gameOverDiv.style.position = "fixed";
-  gameOverDiv.style.position = "center center";
-  gameOverDiv.style.backgroundColor = "white";
-  gameOverDiv.style.width = "30vw";
-  gameOverDiv.style.height = "10vw";
-  gameOverDiv.style.backgroundColor = "#ccc";
-  gameOverDiv.style.borderRadius = "20px";
-  gameOverDiv.style.boxShadow = "4px 4px 4px #000";
-  gameOverDiv.style.textShadow = "2px 2px 2px #000";
-  gameOverDiv.style.fontSize = "2em";
-  // gameOverDiv.style.top = "50vh";
-  // gameOverDiv.style.left = "50vw";
-  document.body.appendChild(gameOverDiv);
+    gameOverDiv.appendChild(textNode);
+    gameOverDiv.style.display = "flex";
+    gameOverDiv.style.alignItems = "center";
+    gameOverDiv.style.justifyContent = "center";
+    gameOverDiv.style.position = "fixed";
+    gameOverDiv.style.position = "center center";
+    gameOverDiv.style.backgroundColor = "white";
+    gameOverDiv.style.width = "30vw";
+    gameOverDiv.style.height = "10vw";
+    gameOverDiv.style.backgroundColor = "#ccc";
+    gameOverDiv.style.borderRadius = "20px";
+    gameOverDiv.style.boxShadow = "4px 4px 4px #000";
+    gameOverDiv.style.textShadow = "2px 2px 2px #000";
+    gameOverDiv.style.fontSize = "2em";
+    document.body.appendChild(gameOverDiv);
+  }, 750); // gameOver div displayed with 0.75 second delay
 }
+
+// enemy movement code
+let enemyMovementInterval;
+
+enemyMovementInterval = setInterval(function () {
+  // 1 : Up
+  // 2 : Left
+  // 3 : Down
+  // 4 : Right
+  if (startBtnActive == false && gameOver == false) {
+    // only move enemies if this condition is true
+    let enemies = document.querySelectorAll(".enemy");
+    for (let enemy of enemies) {
+      movement = Math.ceil(Math.random() * 4);
+    }
+  }
+}, 10);
