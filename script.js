@@ -222,7 +222,7 @@ function touchedEnemy() {
       position.bottom > pos.top &&
       position.top < pos.bottom
     ) {
-      console.log("touched enemy");
+      // console.log("touched enemy");
       displayGameOver();
     }
   }
@@ -258,18 +258,28 @@ function displayGameOver() {
 }
 
 // enemy movement code
-let enemyMovementInterval;
 
-enemyMovementInterval = setInterval(function () {
-  // 1 : Up
-  // 2 : Left
-  // 3 : Down
-  // 4 : Right
-  if (startBtnActive == false && gameOver == false) {
-    // only move enemies if this condition is true
-    let enemies = document.querySelectorAll(".enemy");
-    for (let enemy of enemies) {
-      movement = Math.ceil(Math.random() * 4);
-    }
-  }
-}, 10);
+let enemies = document.querySelectorAll(".enemy");
+
+// let enemyMovementInterval;
+// enemyMovementInterval = setInterval(function () {
+//   // 1 : Up
+//   // 2 : Left
+//   // 3 : Down
+//   // 4 : Right
+//   if (startBtnActive == false && gameOver == false) {
+//     // only move enemies if this condition is true
+//     for (let enemy of enemies) {
+//       movement = Math.ceil(Math.random() * 4);
+//       if (movement == 1) {
+//         enemy.classList.add("up");
+//       } else if (movement == 2) {
+//         enemy.classList.add("left");
+//       } else if (movement == 3) {
+//         enemy.classList.add("down");
+//       } else {
+//         enemy.classList.add("right");
+//       }
+//     }
+//   }
+// }, 10);
